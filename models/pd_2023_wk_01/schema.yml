@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: pd_2023
+    database: til_playground
+    schema: preppin_data_inputs
+    tables:
+      - name: pd2023_wk01
+
+models:
+  - name: stg_2023_01
+    description: Staging model of bank transaction data. This contains the same columns from the source with some additions and minor transformations
+    columns:
+      - name: transaction_code
+        description: Primary key denoting one transaction by one customer
+      - name: value
+        description: The quantity of the transaction
+      - name: bank
+        description: The bank code, parsed from the characters before the '-' in the transaction code
+      - name: customer_code
+        description: Unique customer identifier
+      - name: transaction_date
+        description: Parsed to date form from the source transaction_date column, which is a string
+      - name: online_or_in_person
+        description: Binary field. This is a string with values of 'online' or 'in-person', whereas the source data has this as a numeric code
+  
+  - name: fct_2023_01__output_1
+    description: The total transaction value for each bank, aggregated from stg_2023_01
+    columns:
+      - name: bank
+        description: Primary key. This is a code, not a full name
+      - name: value
+        description: The aggregated value from stg_2023_01
+
+  - name: fct_2023_01__output_2
+    description: The total transaction value for each bank, value of online_or_in_person, and day of the week. Aggregated from stg_2023_01
+    columns:
+      - name: bank
+        description: The bank code
+      - name: online_or_in_person
+        description: A string denoting the transaction type
+      - name: transaction_date
+        description: The weekday for the transaction as a string. I left this name as is to match the output provided in the challenge
+      - name: value
+        description: The total transaction value for each combination of bank, online_or_in_person, and transaction_date (i.e. weekday)
+
+  - name: fct_2023_01__output_3
+    description: The total transaction value for each combination of bank and customer. Aggregated from stg_2023_01
+    columns:
+      - name: bank
+        description: The bank code
+      - name: customer_code
+        description: Unique identifier for each customer
+      - name: value
+        description: The total value for each bank and customer
