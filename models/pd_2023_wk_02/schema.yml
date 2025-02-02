@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: pd_2023
+    database: til_playground
+    schema: preppin_data_inputs
+    tables:
+      - name: pd2023_wk02_transactions
+      - name: pd2023_wk02_swift_codes
