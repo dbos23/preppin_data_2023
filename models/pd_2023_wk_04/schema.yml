@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: pd_2023
+    database: til_playground
+    schema: preppin_data_inputs
+    tables:
+      - name:  pd2023_wk04_january
+      - name:  pd2023_wk04_february
+      - name:  pd2023_wk04_march
+      - name:  pd2023_wk04_april
+      - name:  pd2023_wk04_may
+      - name:  pd2023_wk04_june
+      - name:  pd2023_wk04_july
+      - name:  pd2023_wk04_august
+      - name:  pd2023_wk04_september
+      - name:  pd2023_wk04_october
+      - name:  pd2023_wk04_november
+      - name:  pd2023_wk04_december
