@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: pd_2023
+    database: til_playground
+    schema: preppin_data_inputs
+    tables:
+      # - name: pd2023_wk01
+      # I'm not going to define this source since it's already defined in the schema.yml file for pd_2023_wk_01
+      - name: pd2023_wk03_targets
